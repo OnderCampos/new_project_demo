@@ -1,0 +1,40 @@
+{
+  "agentInstructions": "This repository was scaffolded with Better T Stack. Treat the generated layout as the source of truth; do not invent a parallel app structure.\n\nStack:\n- frontend: native\n- backend: hono\n- database: sqlite\n- orm: drizzle\n- auth: better-auth\n- package-manager: bun\n\nConventions:\n- Install with `bun install` from the repo root unless a workspace README says otherwise.\n- Start local preview with `bun run dev`.\n- Detected toolchain: bun.\n- Keep shared types and API contracts inside existing packages/modules.\n- Prefer editing generated feature folders over creating a new top-level application.\n- Do not commit secrets. Put runtime credentials in `.env` files already expected by the template.\n- Match the existing formatter/linter instead of adding another one.\n",
+  "designContextFiles": [],
+  "testingContextFiles": [],
+  "mergeContextFiles": [
+    "README.md",
+    "apps/native/package.json",
+    "apps/server/package.json",
+    "package.json",
+    "packages/api/package.json",
+    "packages/auth/package.json",
+    "packages/config/package.json",
+    "packages/db/package.json",
+    "turbo.json"
+  ],
+  "runtime": {
+    "install": "bun install",
+    "start": "bun run dev",
+    "stop": null,
+    "readiness": {
+      "port": 3000,
+      "path": "/",
+      "timeoutMs": 120000
+    },
+    "services": [
+      {
+        "name": "web",
+        "command": "bun run dev",
+        "port": 3000,
+        "cwd": "apps/native"
+      },
+      {
+        "name": "api",
+        "command": "bun run dev",
+        "port": 8000,
+        "cwd": "apps/server"
+      }
+    ]
+  }
+}

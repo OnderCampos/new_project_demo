@@ -1,0 +1,48 @@
+{
+  "name": "new_project_demo",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "zod": "^4.5.4",
+      "@types/bun": "^1.4.2",
+      "varlock": "1.18.0",
+      "libsql": "0.5.29",
+      "@trpc/server": "^11.18.0",
+      "better-auth": "1.7.5",
+      "@trpc/client": "^11.18.0",
+      "@better-auth/expo": "1.7.5",
+      "drizzle-orm": "1.0.0-rc.4"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "check-types": "turbo run check-types",
+    "dev:native": "turbo run dev -F native --",
+    "dev:server": "turbo run dev -F server --",
+    "db:push": "turbo run db:push -F @new_project_demo/db --",
+    "db:studio": "turbo run db:studio -F @new_project_demo/db --",
+    "db:generate": "turbo run db:generate -F @new_project_demo/db --",
+    "db:migrate": "turbo run db:migrate -F @new_project_demo/db --",
+    "db:local": "turbo run db:local -F @new_project_demo/db --",
+    "env:generate": "varlock codegen --path ./apps/server/ && varlock codegen --path ./apps/native/ && varlock codegen --path ./packages/db/",
+    "postinstall": "varlock codegen --path ./apps/server/ && varlock codegen --path ./apps/native/ && varlock codegen --path ./packages/db/",
+    "auth:generate": "cd apps/server && bun run auth:generate"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@new_project_demo/config": "workspace:*",
+    "@types/bun": "catalog:",
+    "turbo": "^2.10.12",
+    "typescript": "^6.0.3",
+    "varlock": "catalog:"
+  },
+  "packageManager": "bun@1.4.2"
+}

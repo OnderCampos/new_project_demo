@@ -1,0 +1,22 @@
+{
+  "name": "@new_project_demo/api",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "check-types": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@new_project_demo/auth": "workspace:*",
+    "@new_project_demo/db": "workspace:*",
+    "@trpc/client": "catalog:",
+    "@trpc/server": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@new_project_demo/config": "workspace:*",
+    "typescript": "^6.0.3"
+  }
+}
